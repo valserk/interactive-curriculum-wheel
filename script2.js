@@ -52,8 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 6, radius: 288, color: COLORS[5], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["FETAC", "JCSP", "Leaving Cert", "ICT/EAL", "In-house Certification", "Primary Curriculum", "Junior Cert"], textColor: 'white', labelSize: '14px' }, 
 
         // Circle 7: Red - 7 segments (280 * 1.2 = 336)
-        // Fixed rotation: +PI/2 (approx +90 degrees) to shift 'Diversity' to the desired 1 o'clock position.
-        { id: 7, radius: 336, color: COLORS[6], isStatic: false, rotation: Math.PI / 2, targetRotation: Math.PI / 2, offset: 0, label: null, segments: ["Diversity", "Collaboration/Partnership", "Progression", "Equality", "Continuity", "Flexibility", "Personalised Learning"], textColor: 'white', labelSize: '14px' }, 
+        { id: 7, radius: 336, color: COLORS[6], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Diversity", "Collaboration/Partnership", "Progression", "Equality", "Continuity", "Flexibility", "Personalised Learning"], textColor: 'white', labelSize: '14px' }, 
     ];
 
     /**
