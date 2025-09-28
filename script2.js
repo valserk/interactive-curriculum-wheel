@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let draggedCircle = null;
     let lastMouseAngle = 0;
     // Rings $2$ through $7$ are fully draggable.
-    const DRAGGABLE_CIRCLE_IDS = [2, 3, 4, 5, 6,]; 
+    const DRAGGABLE_CIRCLE_IDS = [2, 3, 4, 5, 6, 7]; 
     // ------------------------------------
 
     // Define solid colors based on the visual wheel structure and user's requested order
