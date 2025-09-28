@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '#2196F3', // 4: Blue - Numeracy / Personal / Working Life / Healthy Living / Literacy
         '#9C27B0', // 5: Purple - The Arts / Languages / etc.
         '#E91E63', // 6: Pink - Junior / Leaving Cert
-        '#4B0082', // 7: Red - Collaboration / Flexibility
+        '#4B0082', // 7: Indigo - Collaboration / Flexibility
     ];
 
     // Define circle data: radius (innermost to outermost)
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Circle 6: Pink - 7 segments (240 * 1.2 = 288)
         { id: 6, radius: 288, color: COLORS[5], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["FETAC", "JCSP", "Leaving Cert", "ICT/EAL", "In-house Certification", "Primary Curriculum", "Junior Cert"], textColor: 'white', labelSize: '14px' }, 
 
-        // Circle 7: Red - 7 segments (280 * 1.2 = 336)
+        // Circle 7: Indigo - 7 segments (280 * 1.2 = 336)
         { id: 7, radius: 336, color: COLORS[6], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Diversity", "Collaboration/Partnership", "Progression", "Equality", "Continuity", "Flexibility", "Personalised Learning"], textColor: 'white', labelSize: '14px' }, 
     ];
 
