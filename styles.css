@@ -1,0 +1,41 @@
+/*
+ * CSS for the Curriculum Wheel Graphic
+ * Uses Inter font and defines a dark background and responsive canvas container.
+ */
+
+ body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff; /* Dark background for visibility/contrast */
+}
+
+#canvas-container {
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    max-height: 800px;
+    position: relative;
+    background-color: white; 
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#myCanvas {
+    border-radius: 12px;
+    max-width: 100%;
+    max-height: 100%;
+    /* Change cursor for dragging/clicking */
+    cursor: grab; /* Set default cursor to indicate drag-ability */
+}
+
+/* Change cursor when the user is actively dragging */
+#myCanvas:active {
+    cursor: grabbing;
+}
