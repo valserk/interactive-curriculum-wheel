@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 3, radius: 144, color: COLORS[2], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Attitudes", "Knowledge", "Skills", "Understanding"], textColor: 'white', labelSize: '16px' }, 
         
         // Circle 4: Blue - 5 segments (160 * 1.2 = 192)
-        { id: 4, radius: 192, color: COLORS[3], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Numeracy", "Personal", "Working Life", "Healthy Living", "Literacy"], textColor: 'white', labelSize: '16px' }, 
+        { id: 4, radius: 192, color: COLORS[3], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Numeracy", "Personal", "Working Life", "Healthy Living", "Literacy"], textColor: 'white', labelSize: '18px' }, 
 
         // Circle 5: Purple - 10 segments (200 * 1.2 = 240)
         { id: 5, radius: 240, color: COLORS[4], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, 
