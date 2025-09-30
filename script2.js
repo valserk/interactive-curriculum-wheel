@@ -38,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 2, radius: 96, color: COLORS[1], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: [["Learning", "Prior"], "Interests", ["Care Plan", "IEP"], ["Aspirations", "Future"]], textColor: 'white', labelSize: '14px' }, // "Prior Learning" is now a nested array
         
         // Circle 3: Green - 4 segments (120 * 1.2 = 144)
-        { id: 3, radius: 144, color: COLORS[2], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Attitudes", "Knowledge", "Skills", "Understanding"], textColor: 'white', labelSize: '14px' }, 
+        { id: 3, radius: 144, color: COLORS[2], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Attitudes", "Knowledge", "Skills", "Understanding"], textColor: 'white', labelSize: '16px' }, 
         
         // Circle 4: Blue - 5 segments (160 * 1.2 = 192)
-        { id: 4, radius: 192, color: COLORS[3], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Numeracy", "Personal", "Working Life", "Healthy Living", "Literacy"], textColor: 'white', labelSize: '14px' }, 
+        { id: 4, radius: 192, color: COLORS[3], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Numeracy", "Personal", "Working Life", "Healthy Living", "Literacy"], textColor: 'white', labelSize: '18px' }, 
 
         // Circle 5: Purple - 10 segments (200 * 1.2 = 240)
         { id: 5, radius: 240, color: COLORS[4], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, 
