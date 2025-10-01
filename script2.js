@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Only apply the alternating tint to circles 2 and 3.
                     // Circles 4, 5, 6, 7 revert to the base color to improve visual correctness.
-                    if (circle.id === 2 || circle.id === 3 || circle.id === 4) {
+                    if (circle.id === 2 || circle.id === 3 ||) {
                         // Generate alternating color tint: 8% lighter or darker
                         const colorLum = (s % 2 === 0) ? 0.08 : -0.08; 
                         segmentColor = adjustColor(circle.color, colorLum);
