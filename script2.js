@@ -55,6 +55,30 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 7, radius: 336, color: COLORS[6], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Diversity", "Collaboration/Partnership", "Progression", "Equality", "Continuity", "Flexibility", "Personalised Learning"], textColor: 'white', labelSize: '20px' }, 
     ];
 
+    
+    /**
+     * Lightens or darkens a hex color by a given luminosity factor.
+     * @param {string} hex - The base color in hex format (#RRGGBB).
+     * @param {number} lum - The luminosity factor (e.g., 0.1 for 10% lighter, -0.1 for 10% darker).
+     * @returns {string} The adjusted hex color.
+     */
+    const adjustColor = (hex, lum) => {
+        // Handle hex without '#'
+        hex = hex.replace(/[^0-9a-f]/gi, '');
+        if (hex.length < 6) {
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+        }
+        
+        let rgb = "#", c, i;
+        for (i = 0; i < 3; i++) {
+            c = parseInt(hex.substr(i * 2, 2), 16);
+            c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+            rgb += ("00" + c).substr(c.length);
+        }
+        return rgb;
+    };
+
+
     /**
      * Initializes the canvas dimensions and center point, handling responsiveness.
      */
@@ -89,13 +113,62 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Apply rotation based on the current angle
             ctx.rotate(circle.rotation);
 
-            // Start drawing the full circle
-            ctx.beginPath();
-            ctx.arc(0, 0, circle.radius, 0, Math.PI * 2);
+            // --- DRAW SEGMENTS / CIRCLE FILL ---
 
-            // Fill the area.
-            ctx.fillStyle = circle.color;
-            ctx.fill();
+            if (circle.segments) { 
+                // Draw individual segments for rings 2 through 7 (alternating tints)
+                
+                const segmentCount = circle.segments.length;
+                const segmentArc = (Math.PI * 2) / segmentCount; 
+                const initialSegmentRotation = INITIAL_SEGMENT_ALIGNMENT;
+                
+                const outerRadius = circle.radius;
+                const innerRadius = (i > 0) ? circlesData[i - 1].radius : 0;
+                
+                for (let s = 0; s < segmentCount; s++) {
+                    
+                    // Calculate angles for this segment slice
+                    let startAngle = initialSegmentRotation + (s * segmentArc);
+                    let endAngle = startAngle + segmentArc;
+                    
+                    let segmentColor = circle.color;
+                    
+                    // Only apply the alternating tint to circles 2 and 3.
+                    // Circles 4, 5, 6, 7 revert to the base color to improve visual correctness.
+                    if (circle.id === 2 || circle.id === 3) {
+                        // Generate alternating color tint: 8% lighter or darker
+                        const colorLum = (s % 2 === 0) ? 0.08 : -0.08; 
+                        segmentColor = adjustColor(circle.color, colorLum);
+                    }
+                    
+                    ctx.beginPath();
+                    
+                    // Move to inner corner
+                    ctx.moveTo(innerRadius * Math.cos(startAngle), innerRadius * Math.sin(startAngle));
+                    
+                    // Draw inner arc
+                    ctx.arc(0, 0, innerRadius, startAngle, endAngle);
+                    
+                    // Draw line to outer corner
+                    ctx.lineTo(outerRadius * Math.cos(endAngle), outerRadius * Math.sin(endAngle));
+                    
+                    // Draw outer arc (backwards)
+                    ctx.arc(0, 0, outerRadius, endAngle, startAngle, true); 
+                    
+                    ctx.closePath();
+                    
+                    ctx.fillStyle = segmentColor;
+                    ctx.fill();
+                    
+                }
+
+            } else {
+                // Draw solid circle for the center (ID 1)
+                ctx.beginPath();
+                ctx.arc(0, 0, circle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = circle.color;
+                ctx.fill();
+            }
 
             // --- DRAW TEXT LOGIC ---
             
@@ -111,20 +184,20 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (circle.segments) { 
                 // Curved text segments logic for rings $2$ through $7$
 
-                // Determine the radius where the text should sit (midpoint of the ring band)
+                // Determine the radius where the text should sit (midpoint of the ring band) - VALUES SCALED BY 1.2
                 let radiusForText;
                 if (circle.id === 2) radiusForText = 72;    // 60 * 1.2
                 else if (circle.id === 3) radiusForText = 120;  // 100 * 1.2
                 else if (circle.id === 4) radiusForText = 168;  // 140 * 1.2
                 else if (circle.id === 5) radiusForText = 216;  // 180 * 1.2
                 else if (circle.id === 6) radiusForText = 264;  // 220 * 1.2
-                else if (circle.id === 7) radiusForText = 312;  // 260 * 1.2 
+                else if (circle.id === 7) radiusForText = 312;  // 260 * 1.2
                 
                 const segmentCount = circle.segments.length;
                 const segmentArc = (Math.PI * 2) / segmentCount; 
                 const segmentTextSize = parseInt(circle.labelSize.replace('px', ''), 10);
-                // Offset for stacked lines (e.g., 12px up and 12px down from the center radius)
-                const lineOffset = segmentTextSize * 0.7; 
+                // Offset for stacked lines. Reduced to 70% of the font size for tighter line spacing.
+                const lineOffset = segmentTextSize * 0.7;
 
                 // Set text styles
                 ctx.fillStyle = circle.textColor;
