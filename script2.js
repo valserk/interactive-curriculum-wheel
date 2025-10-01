@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let draggedCircle = null;
     let lastMouseAngle = 0;
     // Rings $2$ through $7$ are fully draggable.
-    const DRAGGABLE_CIRCLE_IDS = [2, 3, 4, 5, 6, 7]; 
+    const DRAGGABLE_CIRCLE_IDS = [2, 3, 4, 5, 6,]; 
     // ------------------------------------
 
     // Define solid colors based on the visual wheel structure and user's requested order
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '#2196F3', // 4: Blue - Numeracy / Personal / Working Life / Healthy Living / Literacy
         '#9C27B0', // 5: Purple - The Arts / Languages / etc.
         '#E91E63', // 6: Pink - Junior / Leaving Cert
-        '#4B0082', // 7: Indigo - Collaboration / Flexibility
+        '#4B0082', // 7: Red - Collaboration / Flexibility
     ];
 
     // Define circle data: radius (innermost to outermost)
@@ -38,24 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 2, radius: 96, color: COLORS[1], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: [["Learning", "Prior"], "Interests", ["Care Plan", "IEP"], ["Aspirations", "Future"]], textColor: 'white', labelSize: '14px' }, // "Prior Learning" is now a nested array
         
         // Circle 3: Green - 4 segments (120 * 1.2 = 144)
-        { id: 3, radius: 144, color: COLORS[2], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Attitudes", "Knowledge", "Skills", "Understanding"], textColor: 'white', labelSize: '16px' }, 
+        { id: 3, radius: 144, color: COLORS[2], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Attitudes", "Knowledge", "Skills", "Understanding"], textColor: 'white', labelSize: '14px' }, 
         
         // Circle 4: Blue - 5 segments (160 * 1.2 = 192)
-        { id: 4, radius: 192, color: COLORS[3], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Numeracy", "Personal", "Working Life", "Healthy Living", "Literacy"], textColor: 'white', labelSize: '20px' }, 
+        { id: 4, radius: 192, color: COLORS[3], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Numeracy", "Personal", "Working Life", "Healthy Living", "Literacy"], textColor: 'white', labelSize: '14px' }, 
 
         // Circle 5: Purple - 10 segments (200 * 1.2 = 240)
         { id: 5, radius: 240, color: COLORS[4], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, 
           segments: ["The Arts", "Languages", "Soc. & Env.", "Moral/Religious", "Guidance", "English", "Science", "Design & Tech", "Health & PE", "Maths"], 
-          textColor: 'white', labelSize: '16px' }, 
+          textColor: 'white', labelSize: '14px' }, 
 
         // Circle 6: Pink - 7 segments (240 * 1.2 = 288)
-        { id: 6, radius: 288, color: COLORS[5], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["FETAC", "JCSP", "Leaving Cert", "ICT/EAL", "In-house Certification", "Primary Curriculum", "Junior Cert"], textColor: 'white', labelSize: '20px' }, 
+        { id: 6, radius: 288, color: COLORS[5], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["FETAC", "JCSP", "Leaving Cert", "ICT/EAL", "In-house Certification", "Primary Curriculum", "Junior Cert"], textColor: 'white', labelSize: '14px' }, 
 
-        // Circle 7: Indigo - 7 segments (280 * 1.2 = 336)
-        { id: 7, radius: 336, color: COLORS[6], isStatic: false, rotation: 0, targetRotation: 0, offset: 0, label: null, segments: ["Diversity", "Collaboration/Partnership", "Progression", "Equality", "Continuity", "Flexibility", "Personalised Learning"], textColor: 'white', labelSize: '20px' }, 
+        // Circle 7: Red - 7 segments (280 * 1.2 = 336)
+        // Fixed rotation: +PI/2 (approx +90 degrees) to shift 'Diversity' to the desired 1 o'clock position.
+        { id: 7, radius: 336, color: COLORS[6], isStatic: false, rotation: Math.PI / 2, targetRotation: Math.PI / 2, offset: 0, label: null, segments: ["Diversity", "Collaboration/Partnership", "Progression", "Equality", "Continuity", "Flexibility", "Personalised Learning"], textColor: 'white', labelSize: '14px' }, 
     ];
 
-    
     /**
      * Lightens or darkens a hex color by a given luminosity factor.
      * @param {string} hex - The base color in hex format (#RRGGBB).
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Only apply the alternating tint to circles 2 and 3.
                     // Circles 4, 5, 6, 7 revert to the base color to improve visual correctness.
-                    if (circle.id === 2 || circle.id === 3 ||) {
+                    if (circle.id === 2 || circle.id === 3 ) {
                         // Generate alternating color tint: 8% lighter or darker
                         const colorLum = (s % 2 === 0) ? 0.08 : -0.08; 
                         segmentColor = adjustColor(circle.color, colorLum);
